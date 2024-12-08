@@ -261,25 +261,16 @@ class RoarPyCarlaWorld(RoarPyWorld):
         return self.carla_world.get_blueprint_library().find(id)
 
     """
-    Get a list of all available spawn points
+    Hardcoded spawn point
     Output: [(location, rotation), ...]
     rotation is [roll, pitch, yaw] in radians
     """
     @cached_property
     def spawn_points(self) -> typing.List[typing.Tuple[np.ndarray, np.ndarray]]:
-        # Check if there exists any overriding asset
-        spawn_point_asset_dir = __class__.ASSET_DIR + "/spawn_points"
-        spawn_point_file = spawn_point_asset_dir + "/Monza.npz"
-        if os.path.exists(spawn_point_file):
-            spawn_points = np.load(spawn_point_file)
-            ret = []
-            location = spawn_points["locations"]
-            rotation = spawn_points["rotations"]
-            ret.append((location, rotation))
-            return ret
-        else:
-            raise Exception("no spawn_points asset for this map")
-            return None
+        return [(
+            np.ndarray([-283.79998779,  391.69998169,    0.59999996]),
+            np.ndarray([ 0.        , -0.        ,  1.91985925])
+        )]
 
     """
     Convert a location in world coordinate to geolocation
