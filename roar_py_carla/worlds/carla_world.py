@@ -273,18 +273,13 @@ class RoarPyCarlaWorld(RoarPyWorld):
         if os.path.exists(spawn_point_file):
             spawn_points = np.load(spawn_point_file)
             ret = []
-            for i in range(len(spawn_points["locations"])):
-                location = spawn_points["locations"][i]
-                rotation = spawn_points["rotations"][i]
-                ret.append((location, rotation))
+            location = spawn_points["locations"]
+            rotation = spawn_points["rotations"]
+            ret.append((location, rotation))
             return ret
-
-        native_spawn_points = self._native_carla_map.get_spawn_points()
-        ret = []
-        for native_spawn_point in native_spawn_points:
-            transform_spawn = transform_from_carla(native_spawn_point)
-            ret.append(transform_spawn)
-        return ret
+        else:
+            raise Exception("no spawn_points asset for this map")
+            return None
 
     """
     Convert a location in world coordinate to geolocation
