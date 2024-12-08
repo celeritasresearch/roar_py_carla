@@ -85,7 +85,7 @@ class RoarPyCarlaWorld(RoarPyWorld):
     @roar_py_thread_sync
     def maneuverable_waypoints(self) -> typing.Optional[typing.List[RoarPyWaypoint]]:
         waypoint_asset_dir = __class__.ASSET_DIR + "/waypoints"
-        waypoint_file = waypoint_asset_dir + "/" + self.map_name + ".npz"
+        waypoint_file = waypoint_asset_dir + "/Monza.npz" 
         if os.path.exists(waypoint_file):
             way_points = np.load(waypoint_file)
             return RoarPyWaypoint.load_waypoint_list(way_points)
@@ -269,7 +269,7 @@ class RoarPyCarlaWorld(RoarPyWorld):
     def spawn_points(self) -> typing.List[typing.Tuple[np.ndarray, np.ndarray]]:
         # Check if there exists any overriding asset
         spawn_point_asset_dir = __class__.ASSET_DIR + "/spawn_points"
-        spawn_point_file = spawn_point_asset_dir + "/" + self.map_name + ".npz"
+        spawn_point_file = spawn_point_asset_dir + "/Monza.npz"
         if os.path.exists(spawn_point_file):
             spawn_points = np.load(spawn_point_file)
             ret = []
