@@ -268,8 +268,8 @@ class RoarPyCarlaWorld(RoarPyWorld):
     @cached_property
     def spawn_points(self) -> typing.List[typing.Tuple[np.ndarray, np.ndarray]]:
         return [(
-            np.ndarray([-283.79998779,  391.69998169,    0.59999996]),
-            np.ndarray([ 0.        , -0.        ,  1.91985925])
+            np.array([-283.79998779,  391.69998169,    0.59999996], dtype = np.float_),
+            np.array([ 0.        , -0.        ,  1.91985925], dtype = np.float_)
         )]
 
     """
